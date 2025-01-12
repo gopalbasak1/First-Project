@@ -2,7 +2,6 @@ import { StudentServices } from './student.service';
 import sendResponse from '../../utlis/sendResponse';
 import httpStatus from 'http-status';
 import catchAsync from '../../utlis/catchAsync';
-// import studentValidationSchema from './student.validation';
 
 const getAllStudents = catchAsync(async (req, res) => {
   const result = await StudentServices.getAllStudentsFromDB(req.query);
@@ -10,7 +9,8 @@ const getAllStudents = catchAsync(async (req, res) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Student are retrieved successfully',
-    data: result,
+    meta: result.meta,
+    data: result.result,
   });
 });
 
